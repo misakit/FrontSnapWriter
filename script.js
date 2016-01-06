@@ -4,7 +4,11 @@ var execSync = require('child_process').execSync;
 var moment = require('moment');
 
 var HOME_DIR = process.env.HOME;
-var DAYONE = path.join(HOME_DIR, 'Dropbox/Apps/Day\ One/Journal.dayone/entries/');
+//var DAYONE = path.join(HOME_DIR, 'Dropbox/Apps/Day\ One/Journal.dayone/entries/');
+var dayonedir = execSync('ls ~/Library/Mobile\\ Documents/|grep dayoneapp').toString().replace(/\n/g, "");
+console.log(dayonedir);
+var DAYONE = path.join(HOME_DIR, 'Library/Mobile\ Documents/', dayonedir, '/Documents/Journal_dayone/entries/');
+console.log(DAYONE);
 
 var canvas = document.getElementById("notification");
 var context = canvas.getContext("2d"); 
@@ -45,15 +49,19 @@ myCodeMirror.on("keyHandled", function(cm, name, event) {
         '</dict>' + '\n' +
         '</plist>';
 
-      var fileName = DAYONE + uuid + '.doentry';
+      var entryFileName = uuid + '.doentry';
+      var fileName = path.join(DAYONE, entryFileName);
+      //console.log(fileName);
       fs.writeFile(fileName, entry, function(err) {
-        //console.log('created new entry.');
-        canvas.style.zIndex = 1;
-        setTimeout(function() {
-          canvas.style.zIndex = -1;
-        }, 1000);
+        if (err) {
+          alert(err);
+        } else {
+          canvas.style.zIndex = 1;
+          setTimeout(function() {
+            canvas.style.zIndex = -1;
+          }, 1000);
+        }
       });
-
       myCodeMirror.doc.setValue("");
     }
   }
