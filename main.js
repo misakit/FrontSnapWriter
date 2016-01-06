@@ -20,6 +20,13 @@ var template = [
         label: 'Paste',
         accelerator: 'CmdOrCtrl+V',
         role: 'paste'
+      },
+      {
+        label: 'Send',
+        accelerator: 'CmdOrCtrl+Enter',
+        click: function() {
+          mainWindow.webContents.send('Send', 'send text.');
+        }
       }
     ]
   }
@@ -45,7 +52,6 @@ if (process.platform == 'darwin') {
     ]
   });
 };
-
 
 app.on('window-all-closed', function() {
   if (process.platform != 'darwin') {
