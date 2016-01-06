@@ -36,10 +36,19 @@ require('electron').ipcRenderer.on('Send', function(event, message) {
       '<dict>' + '\n' +
       '     <key>Creation Date</key>' + '\n' +
       '     <date>' + now + '</date>' + '\n' +
+      '     <key>Creator</key>' + '\n' +
+      '     <dict>' + '\n' +
+      '           <key>Software Agent</key>' + '\n' +
+      '           <string>FrontSnapwriter/0.1.0</string>' + '\n' +
+      '     </dict>' + '\n' +
       '     <key>Entry Text</key>' + '\n' +
       '     <string>' + entryText + '</string>' + '\n' +
       '     <key>Starred</key>' + '\n' +
       '     <false/>' + '\n' +
+      '     <key>Tags</key>' + '\n' +
+      '     <array>' + '\n' +
+      '           <string>snap</string>' + '\n' +
+      '     </array>' + '\n' +
       '     <key>Time Zone</key>' + '\n' +
       '     <string>Asia/Tokyo</string>' + '\n' +
       '     <key>UUID</key>' + '\n' +
