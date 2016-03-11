@@ -25,7 +25,8 @@ var template = [
         label: 'Send',
         accelerator: 'CmdOrCtrl+Enter',
         click: function() {
-          mainWindow.webContents.send('Send', 'send text.');
+          var temp_dir = app.getPath('temp')
+          mainWindow.webContents.send('Send', temp_dir);
         }
       }
     ]
