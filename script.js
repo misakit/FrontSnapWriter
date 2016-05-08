@@ -18,7 +18,8 @@ var myCodeMirror = CodeMirror.fromTextArea(document.getElementById("editor"), {
   mode: 'gfm',
   lineNumbers: true,
   theme: 'monokai',
-  lineWrapping: true
+  lineWrapping: true,
+  autofocus: true
 });
 
 require('electron').ipcRenderer.on('Send', function(event, message) {
